@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-900 text-white p-4;
+  }
+  #app {
+    @apply grid gap-6;
+  }
+  textarea {
+    @apply bg-black;
+  }
+  header {
+    @apply p-4 sticky top-0 bg-gray-900;
+  }
+  main {
+    @apply mx-auto max-w-7xl grid gap-6;
+  }
+}

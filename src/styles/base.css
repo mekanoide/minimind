@@ -1,9 +1,53 @@
 html {
   font-family: 'Montserrat', sans-serif;
-  font-size: calc(14px + 0.5vw);
-  line-height: 1.15;
+  font-size: calc(12px + 0.5vw);
+  line-height: 1.33;
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
   background-color: var(--colorBackground);
   color: var(--colorText);
+}
+
+input:is(
+    [type='text'],
+    [type='email'],
+    [type='password'],
+    [type='number'],
+    [type='tel'],
+    [type='url']
+  ),
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  width: 100%;
+  background-color: var(--colorBackgroundShade);
+  color: var(--colorText);
+  border: none;
+  line-height: 1.15;
+  overflow: visible;
+  text-transform: none;
+  -webkit-appearance: none;
+  padding: var(--spaceM);
+}
+
+[contenteditable='true'] {
+  font-family: inherit;
+  font-size: 100%;
+  width: 100%;
+  background-color: var(--colorBackgroundShade);
+  color: var(--colorText);
+  border: none;
+  line-height: 1.15;
+  overflow: visible;
+  text-transform: none;
+  padding: var(--spaceM);
+}
+
+[contenteditable='true']:focus {
+  outline: none;
+  height: 100vh;
+}
+
+textarea {
+  resize: none;
 }

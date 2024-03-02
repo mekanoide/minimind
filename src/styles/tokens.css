@@ -1,4 +1,12 @@
 :root {
   --colorBackground: hsl(0 0% 4%);
+  --colorBackgroundShade: hsl(0 0% 8%);
   --colorText: hsl(0 0% 96%);
+  --colorSecondary: hsl(0 0% 32%);
+
+  --spaceS: 0.5rem;
+  --spaceM: 1rem;
+  --spaceL: 1.5rem;
+
+  --corner: 0.25rem;
 }
