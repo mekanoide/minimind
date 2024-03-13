@@ -56,6 +56,6 @@
 
 <style scoped>
 svg {
-  @apply h-6 fill-gray-600;
+  @apply h-6 fill-stone-500;
 }
 </style>

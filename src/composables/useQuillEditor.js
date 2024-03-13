@@ -2,7 +2,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import Quill from 'quill'
 import QuillMarkdown from 'quilljs-markdown'
 
-export function useQuillEditor(target) {
+export const useQuillEditor= (target) => {
   const quillEditor = ref(null)
   const quillEditorMarkdown = ref(null)
 

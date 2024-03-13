@@ -4,18 +4,64 @@
 
 @layer base {
   body {
-    @apply bg-gray-900 text-white p-4;
+    @apply bg-stone-950 text-white;
   }
   #app {
-    @apply grid gap-6;
+    @apply mx-auto max-w-6xl w-full;
+  }
+  input:is(
+      [type='text'],
+      [type='email'],
+      [type='password'],
+      [type='search'],
+      [type='tel'],
+      [type='url'],
+      [type='number'],
+      [type='date'],
+      [type='time'],
+      [type='datetime-local'],
+      [type='month'],
+      [type='week'],
+      [type='color'],
+      [type='file'],
+      [type='datetime'],
+      [type='datetime-local'],
+      [type='month'],
+      [type='week'],
+      [type='color'],
+      [type='file'],
+      [type='range'],
+      [type='search'],
+      [type='tel'],
+      [type='time'],
+      [type='url'],
+      [type='week'],
+      [type='text']
+    ),
+  textarea {
+    @apply w-full rounded-2xl bg-stone-800 p-4 text-white;
   }
   textarea {
-    @apply bg-black;
+    @apply resize-none;
   }
-  header {
-    @apply p-4 sticky top-0 bg-gray-900;
+
+  :is(input, textarea)::placeholder {
+    @apply text-stone-500;
   }
-  main {
-    @apply mx-auto max-w-7xl grid gap-6;
+
+  button {
+    @apply transition-all duration-300 ease-in-out hover:text-stone-200;
+  }
+  button[type='submit'] {
+    @apply bg-pink-700 p-4 hover:bg-stone-600 rounded-2xl;
+  }
+  :disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+}
+
+@layer components {
+  button.icon {
+    @apply grid gap-4 p-4 rounded-2xl;
   }
 }
