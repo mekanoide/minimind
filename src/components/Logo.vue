@@ -1,3 +1,9 @@
+<script setup lang="ts">
+const props = defineProps<{
+  size: 'small' | 'large'
+}>()
+</script>
+
 <template>
   <div class="mx-auto w-fit">
     <svg
@@ -6,6 +12,7 @@
       viewBox="0 0 296 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      :data-size="size"
     >
       <path
         d="M200 28C200 23.5817 203.582 20 208 20V20C212.418 20 216 23.5817 216 28V36C216 40.4183 212.418 44 208 44V44C203.582 44 200 40.4183 200 36V28Z"
@@ -57,5 +64,9 @@
 <style scoped>
 svg {
   @apply h-6 w-auto fill-rose-600;
+}
+
+svg[data-size='large'] {
+  @apply h-10;
 }
 </style>

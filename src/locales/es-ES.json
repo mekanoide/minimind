@@ -4,6 +4,8 @@
   "notes": "Notas",
   "tasks": "Tareas",
   "close": "Cerrar",
+  "auth-description": "Inicia sesión con tu dirección de correo electrónico. Te enviaremos un enlace mágico para iniciar sesión.",
+  "your-email": "Tu correo electrónico",
   "magic-link-sent": "Hemos enviado un enlace mágico a tu correo electrónico. Haz clic en el enlace para iniciar sesión. Puedes cerrar esta pestaña.",
   "add-note": "Añadir nota",
   "add-task": "Añadir tarea",

@@ -10,7 +10,7 @@ const loading = ref(false)
 const email = ref('')
 const sent = ref(false)
 
-const handleLogin = async () => {
+async function handleLogin() {
   loading.value = true
   await login(email.value)
   sent.value = true
@@ -18,12 +18,12 @@ const handleLogin = async () => {
 </script>
 
 <template>
-  <div class="grid h-svh place-content-center">
+  <div class="grid h-svh place-content-center p-8">
     <section class="m-auto grid max-w-lg gap-8" v-if="!sent">
-      <Logo />
-      <p>Sign in via magic link with your email below</p>
+      <Logo size="large" />
+      <p>{{ $t('auth-description') }}</p>
       <form class="grid gap-4" @submit.prevent="handleLogin">
-        <input type="email" placeholder="Your email" v-model="email" required />
+        <input type="email" :placeholder="$t('your-email')" v-model="email" required />
         <Button type="submit" variant="primary" size="large" :pending="loading">
           {{ $t('send-magic-link') }}
         </Button>
@@ -36,5 +36,3 @@ const handleLogin = async () => {
     </section>
   </div>
 </template>
-
-style

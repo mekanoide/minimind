@@ -39,7 +39,7 @@
       [type='text']
     ),
   textarea {
-    @apply w-full rounded-md bg-zinc-800 p-4 text-white;
+    @apply w-full rounded-lg bg-zinc-800 p-4 text-white;
   }
   textarea {
     @apply resize-none;
