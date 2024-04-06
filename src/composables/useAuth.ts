@@ -4,14 +4,14 @@ import { useSupabaseClient } from '@/composables/useSupabaseClient'
 export function useAuth() {
   const { supabase } = useSupabaseClient()
 
-  const login = async (email) => {
+  const login = async (email:string) => {
     try {
       const { data, error } = await supabase.auth.signInWithOtp({
         email: email,
         options: {
           redirectTo: import.meta.env.DEV
             ? 'http://localhost:3002'
-            : 'https://your-app-url.com'
+            : 'https://minimind.netlify.app'
         }
       })
       if (error) throw error
