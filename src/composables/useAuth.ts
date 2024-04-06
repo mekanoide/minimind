@@ -11,7 +11,7 @@ export function useAuth() {
       const { data, error } = await supabase.auth.signInWithOtp({
         email: email,
         options: {
-          redirectTo: redirectURL
+          emailRedirectTo: redirectURL
         }
       })
       if (error) throw error

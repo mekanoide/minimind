@@ -22,7 +22,7 @@ async function handleLogin() {
     <section class="m-auto grid max-w-lg gap-8" v-if="!sent">
       <Logo size="large" />
       <p>{{ $t('auth-description') }}</p>
-      <form class="grid gap-4" @submit.prevent="handleLogin">
+      <form class="grid gap-8" @submit.prevent="handleLogin">
         <input type="email" :placeholder="$t('your-email')" v-model="email" required />
         <Button type="submit" variant="primary" size="large" :pending="loading">
           {{ $t('send-magic-link') }}
