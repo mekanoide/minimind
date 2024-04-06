@@ -1,17 +1,16 @@
 <script setup>
-import { ref } from 'vue'
-import Header from '@/components/Header.vue'
-import Tabs from '@/components/Tabs.vue'
-import Tab from '@/components/Tab.vue'
+import { useDialogStore } from '@/stores/useDialogStore'
+import { useLoadingStore } from '@/stores/useLoadingStore'
+import { storeToRefs } from 'pinia'
+import Dialog from '@/components/Dialog.vue'
+import Loading from '@/components/Loading.vue'
+
+const dialogStore = useDialogStore()
+const loadingStore = useLoadingStore()
 </script>
 
 <template>
-  <Header />
-  <Tabs>
-    <Tab to="/notes">Notes</Tab>
-    <Tab to="/tasks">Tasks</Tab>
-  </Tabs>
-  <main>
-    <RouterView></RouterView>
-  </main>
+  <Loading v-if="loadingStore.isLoading" />
+  <RouterView v-else></RouterView>
+  <Dialog v-if="dialogStore.isShowingDialog" />
 </template>

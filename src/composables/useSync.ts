@@ -2,7 +2,7 @@ import { ref, watch } from 'vue'
 import { useDebounce } from '@/composables/useDebounce'
 import { useSupabaseClient } from '@/composables/useSupabaseClient'
 
-export function useSync() {
+export const useSync = () => {
   const content = ref('')
   const { debounce } = useDebounce()
   const { supabase } = useSupabaseClient()
@@ -53,3 +53,5 @@ export function useSync() {
 
   return { content }
 }
+
+export default { useSync }

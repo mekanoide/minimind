@@ -1,8 +1,8 @@
 import { ref, onMounted, onUnmounted } from 'vue'
-import Quill from 'quill'
+import { Quill } from 'quill'
 import QuillMarkdown from 'quilljs-markdown'
 
-export const useQuillEditor= (target) => {
+export const useQuillEditor = (target: any) => {
   const quillEditor = ref(null)
   const quillEditorMarkdown = ref(null)
 
@@ -28,5 +28,10 @@ export const useQuillEditor= (target) => {
     }
   })
 
-  return { quillEditor: quillEditor.value, quillEditorMarkdown: quillEditorMarkdown.value }
+  return {
+    quillEditor: quillEditor.value,
+    quillEditorMarkdown: quillEditorMarkdown.value
+  }
 }
+
+export default { useQuillEditor }

@@ -1,7 +1,7 @@
 import { ref, onMounted } from 'vue'
 import { useSupabaseClient } from '@/composables/useSupabaseClient'
 
-export const useAuth = () => {
+export function useAuth() {
   const { supabase } = useSupabaseClient()
 
   const login = async (email) => {
@@ -23,17 +23,16 @@ export const useAuth = () => {
 
   const logout = async () => {
     try {
-      const { data, error } = await supabase.from('notes').select('*')
-
-      console.log('notes', data)
-      notes.value = data
+      const { error } = await supabase.auth.signOut()
     } catch (error) {
       console.error('Error fetching notes:', error)
     }
   }
 
   const getUser = async () => {
-    const { data: { user } } = await supabase.auth.getUser()
+    const {
+      data: { user }
+    } = await supabase.auth.getUser()
     return user
   }
 

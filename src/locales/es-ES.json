@@ -1,0 +1,17 @@
+{
+  "note": "Nota",
+  "task": "Tarea",
+  "notes": "Notas",
+  "tasks": "Tareas",
+  "close": "Cerrar",
+  "magic-link-sent": "Hemos enviado un enlace mágico a tu correo electrónico. Haz clic en el enlace para iniciar sesión. Puedes cerrar esta pestaña.",
+  "add-note": "Añadir nota",
+  "add-task": "Añadir tarea",
+  "finish": "Finalizar",
+  "edit": "Editar",
+  "labels": "Etiquetas",
+  "show-labels": "Mostrar etiquetas",
+  "sign-in": "Iniciar sesión",
+  "sign-out": "Cerrar sesión",
+  "send-magic-link": "Enviar enlace mágico"
+}

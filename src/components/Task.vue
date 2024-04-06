@@ -22,18 +22,20 @@ const onDeleteTask = async () => {
 </script>
 
 <template>
-  <li class="group flex gap-4">
-    <input
-      :id="`task-${data.index}`"
-      type="checkbox"
-      class="h-6 w-6 appearance-none rounded border-2 border-stone-500 checked:border-stone-200 checked:bg-stone-200"
-      :checked="data.done"
-      @input="emit('update:checked', $event.target.checked)"
-    />
-    <Icon icon="carbon-tick" class="text-green-500" />
-    <label :for="`task-${data.index}`">
+  <li class="group flex items-center gap-4 rounded-lg border-t-4 border-transparent bg-zinc-900 px-8 py-6 shadow-lg transition-all ease-in-out hover:bg-zinc-800">
+    <div class="grid">
+      <input
+        :id="`task-${data.index}`"
+        type="checkbox"
+        class="h-6 w-6 appearance-none rounded border-2 border-zinc-500 checked:border-zinc-200 checked:bg-zinc-200 col-start-1 row-start-1"
+        :checked="data.done"
+        @input="emit('update:checked', $event.target.checked)"
+      />
+      <Icon icon="carbon-tick" class="text-green-500 col-start-1 row-start-1" />
+    </div>
+    <label class="flex-1" :for="`task-${data.index}`">
       {{ data.content }}
     </label>
-    <button class="text-stone-500 opacity-0 group-hover:opacity-100" @click="onDeleteTask"><Icon icon="carbon:trash-can" width="20" /></button>
+    <button class="text-zinc-200 opacity-0 group-hover:opacity-100" @click="onDeleteTask"><Icon icon="mdi:trash-can-outline" width="24" /></button>
   </li>
 </template>

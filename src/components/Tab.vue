@@ -8,13 +8,13 @@ const emit = defineEmits(['click'])
 </script>
 
 <template>
-  <RouterLink class="cursor-pointer px-8 py-4 text-stone-500" :to="to">
+  <RouterLink class="cursor-pointer px-8 flex items-center rounded-full h-12 text-zinc-400 font-bold transition-all" :to="to">
     <slot></slot>
   </RouterLink>
 </template>
 
 <style scoped>
-a.exact-active {
-  @apply text-stone-200 border-b-4 border-pink-700;
+a:is(.exact-active, :hover) {
+  @apply text-zinc-200 bg-zinc-800;
 }
 </style>

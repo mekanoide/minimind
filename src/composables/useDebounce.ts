@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-export const useDebounce = () => {
+export function useDebounce() {
   const timeout = ref('')
 
   const debounce = (callback, wait = 1000) => {

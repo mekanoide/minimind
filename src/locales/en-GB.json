@@ -1,0 +1,17 @@
+{
+  "note": "Note",
+  "task": "Task",
+  "notes": "Notes",
+  "tasks": "Tasks",
+  "close": "Close",
+  "magic-link-sent": "We've sent a magic link to your email. Click the link to sign in. You can close this tab now.",
+  "add-note": "Add note",
+  "add-task": "Add task",
+  "finish": "Finish",
+  "edit": "Edit",
+  "labels": "Labels",
+  "show-labels": "Show labels",
+  "sign-in": "Sign in",
+  "sign-out": "Sign out",
+  "send-magic-link": "Send magic link"
+}

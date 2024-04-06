@@ -1,35 +1,56 @@
-<script setup>
-import { ref, onMounted } from 'vue'
-import { useNotes } from '@/composables/useNotes'
+<script setup lang="ts">
+import { onMounted, ref } from 'vue'
+import { useNoteStore } from '@/stores/useNoteStore'
 
+import Tabs from '@/components/Tabs.vue'
+import Tab from '@/components/Tab.vue'
+import Spinner from '@/components/Spinner.vue'
+import Button from '@/components/Button.vue'
 import EmptyState from '@/components/EmptyState.vue'
 import NoteEditor from '@/components/NoteEditor.vue'
-import Cards from '@/components/Cards.vue'
-import Card from '@/components/Card.vue'
+import NoteList from '@/components/NoteList.vue'
+import NotePreview from '@/components/NotePreview.vue'
+import Header from '@/components/Header.vue'
+import Subheader from '@/components/Subheader.vue'
+import { Icon } from '@iconify/vue'
 
-const { notes, fetchNotes } = useNotes()
+const noteStore = useNoteStore()
+const pending = ref<boolean>(true)
 
-const onSelectNote = (note) => {
-  console.log('selected note', note)
-  editorData.value = note
-  console.log('selected note', editorData.value)
-}
-
-onMounted(() => {
-  fetchNotes()
+onMounted(async () => {
+  await noteStore.fetchNotes()
+  pending.value = false
 })
 </script>
 
 <template>
-  <NoteEditor @blurred="fetchNotes()" :data="editorData" />
-  <Cards v-if="notes && notes.length > 0">
-    <Card
-      v-for="note in notes"
-      :data="note"
-      :key="note.id"
-      @selected="onSelectNote"
-      @deleted="fetchNotes()"
-    />
-  </Cards>
-  <EmptyState v-else>No notes yet</EmptyState>
+  <Header />
+  <Subheader>
+    <Tabs>
+      <Tab to="/notes">{{ $t('notes') }}</Tab>
+      <Tab to="/tasks">{{ $t('tasks') }}</Tab>
+    </Tabs>
+  </Subheader>
+  <main>
+    <Spinner v-if="pending" />
+    <NoteList v-else-if="!pending && noteStore.notes.length > 0">
+      <NotePreview
+        v-for="note in noteStore.notes"
+        :data="note"
+        @selected="noteStore.startEditingExistingNote(note)"
+        @deleted="noteStore.fetchNotes()"
+      />
+    </NoteList>
+    <EmptyState v-else-if="!pending && noteStore.notes.length === 0">No notes yet</EmptyState>
+    <footer class="sticky bottom-4 grid place-content-center">
+      <Button
+        variant="primary"
+        size="large"
+        @click="noteStore.startEditingNewNote()"
+      >
+        <Icon icon="mdi:plus-circle-outline" width="24" />{{ $t('add-note') }}
+      </Button>
+    </footer>
+  </main>
+  <NoteEditor v-if="noteStore.isEditingNote" />
 </template>
