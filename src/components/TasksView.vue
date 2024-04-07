@@ -6,8 +6,9 @@ import { Icon } from '@iconify/vue'
 
 import Header from '@/components/Header.vue'
 import Subheader from '@/components/Subheader.vue'
+import Tabs from '@/components/Tabs.vue'
+import Tab from '@/components/Tab.vue'
 import Task from '@/components/Task.vue'
-import MobileNavigation from '@/components/MobileNavigation.vue'
 
 import { useDebounce } from '@/composables/useDebounce'
 import { useTasks } from '@/composables/useTasks'
@@ -63,34 +64,39 @@ onMounted(() => {
 </script>
 
 <template>
-  <Subheader> </Subheader>
-  <Sortable
-    class="m-4 grid grid-cols-1 items-stretch"
-    :list="tasks"
-    item-key="position"
-    tag="ul"
-    @end="onUpdateTaskPosition"
-  >
-    <template #item="{ element, index }">
-      <Task :key="element.id" :data="element" @deleted="fetchTasks()" />
-    </template>
-  </Sortable>
-  <section class="sticky top-0 m-4 bg-zinc-950" @click.prevent="">
-    <form class="flex gap-2" @submit="onFinishTaskCreation">
-      <input
-        type="text"
-        v-model="content"
-        placeholder="Create new task..."
-        @keyup.enter="onFinishTaskCreation"
-      />
-      <button
-        type="submit"
-        @click="onFinishTaskCreation"
-        :disabled="!content || content.length === 0"
-        title="Create new task"
-      >
-        <Icon icon="mdi:plus-circle-outline" width="24" />
-      </button>
-    </form>
-  </section>
+  <Header />
+  <Subheader>
+  </Subheader>
+  <main>
+    <Sortable
+      class="m-4 grid grid-cols-1 items-stretch"
+      :list="tasks"
+      item-key="position"
+      tag="ul"
+      @end="onUpdateTaskPosition"
+    >
+      <template #item="{ element, index }">
+        <Task :key="element.id" :data="element" @deleted="fetchTasks()" />
+      </template>
+    </Sortable>
+    <section class="sticky top-0 m-4 bg-zinc-950" @click.prevent="">
+      <form class="flex gap-2" @submit="onFinishTaskCreation">
+        <input
+          type="text"
+          v-model="content"
+          placeholder="Create new task..."
+          @keyup.enter="onFinishTaskCreation"
+        />
+        <button
+          type="submit"
+          @click="onFinishTaskCreation"
+          :disabled="!content || content.length === 0"
+          title="Create new task"
+        >
+          <Icon icon="mdi:plus-circle-outline" width="24" />
+        </button>
+      </form>
+    </section>
+  </main>
+  <MobileNavigation />
 </template>

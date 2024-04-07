@@ -1,20 +1,30 @@
-<script setup>
-const props = defineProps({
-  selected: Boolean,
-  to: String
-})
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
 
-const emit = defineEmits(['click'])
+const props = defineProps<{
+  icon: string
+  label: string
+  selected?: boolean
+  to: string
+}>()
+
+const emit = defineEmits<{
+  click: never[]
+}>()
 </script>
 
 <template>
-  <RouterLink class="cursor-pointer px-8 flex items-center rounded-full h-12 text-zinc-400 font-bold transition-all" :to="to">
-    <slot></slot>
+  <RouterLink
+    class="grid justify-items-center cursor-pointer items-center rounded-full py-2 px-8 font-bold text-zinc-400 transition-all"
+    :to="to"
+  >
+    <Icon :icon="icon" class="h-8 w-8" />
+    <span class="text-sm">{{ label }}</span>
   </RouterLink>
 </template>
 
 <style scoped>
 a:is(.exact-active, :hover) {
-  @apply text-zinc-200 bg-zinc-800;
+  @apply bg-zinc-800 text-white;
 }
 </style>

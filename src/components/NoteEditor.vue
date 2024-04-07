@@ -52,8 +52,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <Transition name="pop" appear>
-    <section class="fixed inset-0 grid bg-zinc-900 p-4">
+  <Transition name="pop">
+    <section :data-editing="noteStore.isEditingNote" class="bg-zinc-900 p-4">
       <div class="mx-auto grid w-full max-w-5xl grid-rows-[1fr_auto]">
         <pre
           class="overflow-auto"
@@ -94,6 +94,9 @@ onMounted(() => {
 </template>
 
 <style scoped>
+[data-editing='true'] {
+  @apply fixed inset-0 z-50;
+}
 .pop-enter-active,
 .pop-leave-active {
   @apply transition-all duration-300;

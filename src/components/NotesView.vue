@@ -24,19 +24,23 @@ onMounted(async () => {
 </script>
 
 <template>
+  <Header />
   <Subheader>
     <NoteEditor />
   </Subheader>
-  <Spinner v-if="pending" />
-  <NoteList v-else-if="!pending && noteStore.notes.length > 0">
-    <NotePreview
-      v-for="note in noteStore.notes"
-      :data="note"
-      @selected="noteStore.startEditingExistingNote(note)"
-      @deleted="noteStore.fetchNotes()"
-    />
-  </NoteList>
-  <EmptyState v-else-if="!pending && noteStore.notes.length === 0"
-    >No notes yet</EmptyState
-  >
+  <main>
+    <Spinner v-if="pending" />
+    <NoteList v-else-if="!pending && noteStore.notes.length > 0">
+      <NotePreview
+        v-for="note in noteStore.notes"
+        :data="note"
+        @selected="noteStore.startEditingExistingNote(note)"
+        @deleted="noteStore.fetchNotes()"
+      />
+    </NoteList>
+    <EmptyState v-else-if="!pending && noteStore.notes.length === 0"
+      >No notes yet</EmptyState
+    >
+  </main>
+  <MobileNavigation />
 </template>

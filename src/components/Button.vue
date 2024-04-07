@@ -39,6 +39,10 @@ button[data-size='large'] {
   @apply h-16 px-12 text-lg;
 }
 
+button[data-pending=true] {
+  @apply cursor-not-allowed opacity-75;
+}
+
 button[data-pending=true] span {
   @apply cursor-not-allowed opacity-0;
 }

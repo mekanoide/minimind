@@ -1,7 +1,11 @@
 import { ref, onMounted } from 'vue'
 import { useSupabaseClient } from '@/composables/useSupabaseClient'
 
-export function useAuth() {
+export function useAuth(): {
+  login: (email: string) => Promise<any>
+  logout: () => Promise<void>
+  getUser: () => Promise<any>
+} {
   const { supabase } = useSupabaseClient()
 
   async function login(email: string) {

@@ -64,7 +64,7 @@ const resizeCard = () => {
 <template>
   <li
     ref="card"
-    class="duration-120 group grid cursor-pointer content-between gap-2 rounded-lg border-t-4 border-transparent bg-zinc-900 px-8 py-6 shadow-lg transition-all ease-in-out hover:bg-zinc-800"
+    class="duration-120 group grid cursor-pointer content-between gap-2 rounded-lg border-l-8 border-transparent bg-zinc-900 px-8 py-6 shadow-lg transition-all ease-in-out hover:bg-zinc-800"
     :data-label="data.label"
     :style="`grid-row-end: span ${Math.ceil(getContentHeight() / 100)}`"
     role="button"
