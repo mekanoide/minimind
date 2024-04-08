@@ -10,7 +10,7 @@ const props = defineProps<{
 
 <template>
   <button
-    class="relative grid h-12 justify-center items-center rounded-full px-8"
+    class="grid h-12 justify-center items-center rounded-full px-8"
     :data-variant="variant"
     :data-size="size"
     :data-pending="pending"

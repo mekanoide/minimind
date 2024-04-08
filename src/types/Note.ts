@@ -1,4 +1,4 @@
-export interface Note {
+export type Note = {
   id: string | null
   content: string
   created_at?: Date

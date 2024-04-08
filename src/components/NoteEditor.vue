@@ -52,58 +52,52 @@ onMounted(() => {
 </script>
 
 <template>
-  <Transition name="pop">
-    <section :data-editing="noteStore.isEditingNote" class="bg-zinc-900 p-4">
-      <div class="mx-auto grid w-full max-w-5xl grid-rows-[1fr_auto]">
-        <pre
-          class="overflow-auto"
-          ref="editor"
-          contenteditable="true"
-          @input.prevent="onUpdateContent"
-          >{{ content }}</pre
+  <section :data-editing="noteStore.isEditingNote" class="bg-zinc-900 p-4">
+    <div class="mx-auto grid w-full max-w-5xl grid-rows-[1fr_auto]">
+      <pre
+        class="overflow-auto"
+        ref="editor"
+        contenteditable="true"
+        @input.prevent="onUpdateContent"
+        >{{ content }}</pre
+      >
+      <footer class="flex gap-2">
+        <Button
+          variant="primary"
+          type="button"
+          @click="noteStore.finishEditingNote"
         >
-        <footer class="flex gap-2">
-          <Button variant="primary" type="button" @click="noteStore.finishEditingNote">
-            {{ $t('finish') }}
+          {{ $t('finish') }}
+        </Button>
+        <div class="relative">
+          <Button
+            type="button"
+            @click="onToggleLabels"
+            :label="$t('show-labels')"
+          >
+            <Icon icon="mdi:label-outline" width="24" />
           </Button>
-          <div class="relative">
-            <Button
-              type="button"
-              @click="onToggleLabels"
-              :label="$t('show-labels')"
-            >
-              <Icon icon="mdi:label-outline" width="24" />
-            </Button>
-            <menu
-              v-if="showingLabels"
-              class="absolute bottom-full grid w-max grid-cols-3 gap-2"
-            >
-              <li v-for="(label, index) in labels" :key="index">
-                <button
-                  :data-label="label.id"
-                  type="button"
-                  class="block aspect-square w-16 rounded-md"
-                ></button>
-              </li>
-            </menu>
-          </div>
-        </footer>
-      </div>
-    </section>
-  </Transition>
+          <menu
+            v-if="showingLabels"
+            class="absolute bottom-full grid w-max grid-cols-3 gap-2"
+          >
+            <li v-for="(label, index) in labels" :key="index">
+              <button
+                :data-label="label.id"
+                type="button"
+                class="block aspect-square w-16 rounded-md"
+              ></button>
+            </li>
+          </menu>
+        </div>
+      </footer>
+    </div>
+  </section>
 </template>
 
 <style scoped>
 [data-editing='true'] {
   @apply fixed inset-0 z-50;
-}
-.pop-enter-active,
-.pop-leave-active {
-  @apply transition-all duration-300;
-}
-.pop-enter-from,
-.pop-leave-to {
-  @apply translate-y-full opacity-0;
 }
 
 [data-label='01'] {

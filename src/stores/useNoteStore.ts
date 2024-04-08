@@ -1,8 +1,8 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { useDebounce } from '@/composables/useDebounce'
-import { useSupabaseClient } from '@/composables/useSupabaseClient'
-import { Note } from '@/types/Note.js'
+import { useDebounce } from '@/composables/useDebounce.ts'
+import { useSupabaseClient } from '@/composables/useSupabaseClient.ts'
+import { Note } from '@/types/Note.ts'
 import { v4 as uuidv4 } from 'uuid'
 
 export const useNoteStore = defineStore('note', () => {
@@ -72,7 +72,6 @@ export const useNoteStore = defineStore('note', () => {
         .select()
         .eq('id', id)
         .single()
-      console.log('note fetched', data)
       const index = notes.value.findIndex((note) => note.id === id)
       if (index !== -1) {
         notes.value.splice(index, 1, data[0])
@@ -96,10 +95,7 @@ export const useNoteStore = defineStore('note', () => {
       console.log('updated note', data)
       return data
     } catch (error) {
-      localStorage.setItem('backupContent', {
-        id: note.id,
-        content: note.content
-      })
+      throw new Error(`Error syncing note: ${error}`)
     }
   }
 
