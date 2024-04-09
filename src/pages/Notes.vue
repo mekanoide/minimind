@@ -34,7 +34,7 @@ onMounted(async () => {
     <EmptyState v-else-if="!pending && noteStore.notes.length === 0"
       >No notes yet</EmptyState
     >
-    <div class="fixed left-4 right-4 bottom-24 pointer-events-none flex place-content-center">
+    <div class="fixed left-4 right-4 bottom-28 pointer-events-none flex place-content-center">
       <Button
         class="pointer-events-auto whitespace-nowrap shadow-xl shadow-zinc-950"
         variant="primary"

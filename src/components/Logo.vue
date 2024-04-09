@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
-  size: 'small' | 'large'
+  size?: 'small' | 'large'
 }>()
 </script>
 
@@ -63,7 +63,7 @@ const props = defineProps<{
 
 <style scoped>
 svg {
-  @apply h-6 w-auto fill-rose-600;
+  @apply h-6 w-auto fill-rose-500;
 }
 
 svg[data-size='large'] {

@@ -5,7 +5,7 @@ import Spinner from '@/components/Spinner.vue'
 
 <template>
   <div
-    class="fixed inset-0 z-50 grid place-content-center bg-zinc-900 text-rose-500"
+    class="fixed inset-0 z-50 grid place-content-center bg-zinc-900 text-rose-600"
   >
     <Spinner />
   </div>

@@ -28,11 +28,11 @@ button:not([data-variant]) {
 }
 
 button[data-variant='primary'] {
-  @apply bg-rose-600 text-zinc-900;
+  @apply bg-rose-500 text-zinc-900;
 }
 
 button[data-variant='primary']:hover {
-  @apply bg-rose-500;
+  @apply bg-rose-400;
 }
 
 button[data-size='large'] {

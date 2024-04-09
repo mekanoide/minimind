@@ -21,7 +21,7 @@ const loadingStore = useLoadingStore()
 <style scoped>
 .slide-enter-active,
 .slide-leave-active {
-  @apply transition-all duration-200;
+  @apply transition-all duration-300;
 }
 .slide-enter-from,
 .slide-leave-to {

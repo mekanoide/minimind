@@ -4,10 +4,12 @@ import { useDebounce } from '@/composables/useDebounce.ts'
 import { useSupabaseClient } from '@/composables/useSupabaseClient.ts'
 import { Note } from '@/types/Note.ts'
 import { v4 as uuidv4 } from 'uuid'
+import { useUser } from '@/composables/useUser.ts'
 
 export const useNoteStore = defineStore('note', () => {
   const { debounce } = useDebounce()
   const { supabase } = useSupabaseClient()
+  const { userId } = useUser()
   const notes = ref<Note[]>([])
   const isEditingNote = ref<Boolean>(false)
 
@@ -58,6 +60,7 @@ export const useNoteStore = defineStore('note', () => {
     currentNote.value.content = content
     debounce(async () => {
       const data = await upsertNote({
+        user_id: userId.value,
         id: currentNote.value.id,
         content: currentNote.value.content
       })
@@ -87,6 +90,7 @@ export const useNoteStore = defineStore('note', () => {
       const { data, error } = await supabase
         .from('notes')
         .upsert({
+          user_id: note.user_id,
           id: note.id,
           content: note.content,
           label: note.label

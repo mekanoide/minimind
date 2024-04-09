@@ -52,10 +52,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <section :data-editing="noteStore.isEditingNote" class="bg-zinc-900 p-4">
-    <div class="mx-auto grid w-full max-w-5xl grid-rows-[1fr_auto]">
+  <section class="fixed inset-0 w-full bg-zinc-900 p-4">
+    <div class="mx-auto grid w-full h-full max-w-5xl grid-rows-[1fr_auto]">
       <pre
-        class="overflow-auto"
+        class="overflow-auto w-full"
         ref="editor"
         contenteditable="true"
         @input.prevent="onUpdateContent"
@@ -96,10 +96,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-[data-editing='true'] {
-  @apply fixed inset-0 z-50;
-}
-
 [data-label='01'] {
   @apply bg-rose-500;
 }

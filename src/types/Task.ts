@@ -1,5 +1,6 @@
 export type Task = {
-  id: string | null
+  user_id: string
+  id: string
   content: string
   created_at?: string
   modified_at?: string

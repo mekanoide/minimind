@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { useTaskStore } from '@/stores/useTaskStore'
+import { Task } from '@/types/Task'
 
 const taskStore = useTaskStore()
 
-const props = defineProps({
-  data: Object
-})
+const props = defineProps<{
+  data: Task
+}>()
 
-const emit = defineEmits(['update:checked'])
+const emit = defineEmits<{
+  deleted: never[]
+}>()
 
 async function onDeleteTask() {
   const confirmed = window.confirm('Are you sure you want to delete this task?')
@@ -22,19 +25,20 @@ async function onDeleteTask() {
 
 <template>
   <li
-    class="group flex items-center gap-4 rounded-lg border-t-4 border-transparent bg-zinc-800 px-6 py-4 shadow-lg transition-all ease-in-out hover:bg-zinc-800"
+    class="flex items-center gap-4 rounded-xl border-l-8 border-transparent bg-zinc-900 px-6 py-4 shadow-lg transition-all ease-in-out hover:bg-zinc-800"
+    :data-state="data.finished ? 'finished' : 'unfinished'"
   >
-    <div class="grid">
+    <div class="relative">
       <input
-        :id="`task-${data.index}`"
+        :id="`task-${data.position}`"
         type="checkbox"
-        class="col-start-1 row-start-1 h-6 w-6 appearance-none rounded border-2 border-zinc-500 checked:border-zinc-200 checked:bg-zinc-200"
-        :checked="data.done"
-        @input="emit('update:checked', $event.target.checked)"
+        class="col-start-1 row-start-1 h-6 w-6 appearance-none rounded-full border-2 border-zinc-500 checked:border-zinc-200 checked:bg-zinc-200"
+        :checked="data.finished"
+        @change="taskStore.upsertTask(data)"
       />
-      <Icon icon="carbon-tick" class="col-start-1 row-start-1 text-green-500" />
+      <Icon v-if="data.finished" icon="mdi:check" class="absolute inset-0 pointer-events-none" size="24" />
     </div>
-    <label class="flex-1" :for="`task-${data.index}`">
+    <label class="flex-1" :for="`task-${data.position}`">
       {{ data.content }}
     </label>
     <button
@@ -45,3 +49,9 @@ async function onDeleteTask() {
     </button>
   </li>
 </template>
+
+<style scoped>
+[data-state='finished'] {
+  @apply opacity-50;
+}
+</style>

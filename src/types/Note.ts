@@ -1,5 +1,6 @@
 export type Note = {
-  id: string | null
+  user_id: string
+  id?: string
   content: string
   created_at?: Date
   modified_at?: Date | null

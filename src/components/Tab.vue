@@ -15,7 +15,7 @@ const emit = defineEmits<{
 
 <template>
   <RouterLink
-    class="grid justify-items-center cursor-pointer items-center rounded-full py-2 px-8 font-bold text-zinc-400 transition-all"
+    class="relative grid gap-2 justify-items-center cursor-pointer items-center py-2 px-8 text-zinc-500 transition-all transition-300 rounded-full hover:bg-zinc-800 hover:text-zinc-200"
     :to="to"
   >
     <Icon :icon="icon" class="h-8 w-8" />
@@ -25,6 +25,11 @@ const emit = defineEmits<{
 
 <style scoped>
 a:is(.exact-active, :hover) {
-  @apply bg-zinc-800 text-white;
+  @apply border-rose-500 text-white;
 }
-</style>
+
+/* a:is(.exact-active)::before {
+  @apply block bg-rose-500 h-1 w-6 absolute top-0 content-[''] rounded-b-lg;
+}
+ */
+ </style>
