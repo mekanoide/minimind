@@ -8,14 +8,12 @@ export function useAuth(): {
 } {
   const { supabase } = useSupabaseClient()
 
-  async function login(email: string) {
-    const redirectURL = import.meta.env.REDIRECT_URL ?? 'http://localhost:3002'
-    console.log('Redirección', redirectURL)
+  async function login(email: string, redirectUrl?: string) {
     try {
       const { data, error } = await supabase.auth.signInWithOtp({
         email: email,
         options: {
-          emailRedirectTo: redirectURL
+          emailRedirectTo: import.meta.env.REDIRECT_URL ?? redirectUrl ?? 'http://localhost:3002'
         }
       })
       if (error) throw error

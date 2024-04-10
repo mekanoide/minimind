@@ -1,20 +1,26 @@
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import { useAuth } from '@/composables/useAuth'
 import Logo from '@/components/Logo.vue'
 import Button from '@/components/Button.vue'
 
-const { login } = useAuth()
+const loading = ref<boolean>(false)
+const email = ref<string>('')
+const sent = ref<boolean>(false)
+const redirectUrl = ref<string>('')
 
-const loading = ref(false)
-const email = ref('')
-const sent = ref(false)
+const { login } = useAuth()
 
 async function handleLogin() {
   loading.value = true
-  await login(email.value)
+  await login(email.value, redirectUrl.value)
   sent.value = true
 }
+
+onMounted(() => {
+  redirectUrl.value = `${window.location.protocol}//${window.location.host}`
+  console.log(redirectUrl.value)
+})
 </script>
 
 <template>
@@ -23,7 +29,12 @@ async function handleLogin() {
       <Logo size="large" />
       <p>{{ $t('auth-description') }}</p>
       <form class="grid gap-8" @submit.prevent="handleLogin">
-        <input type="email" :placeholder="$t('your-email')" v-model="email" required />
+        <input
+          type="email"
+          :placeholder="$t('your-email')"
+          v-model="email"
+          required
+        />
         <Button type="submit" variant="primary" size="large" :pending="loading">
           {{ $t('send-magic-link') }}
         </Button>
