@@ -3,6 +3,7 @@ import { useDialogStore } from '@/stores/useDialogStore'
 import { useLoadingStore } from '@/stores/useLoadingStore'
 import { useNoteStore } from './stores/useNoteStore'
 import Dialog from '@/components/Dialog.vue'
+import Layout from '@/components/Layout.vue'
 import NoteEditor from '@/components/NoteEditor.vue'
 
 const dialogStore = useDialogStore()
@@ -11,7 +12,9 @@ const loadingStore = useLoadingStore()
 </script>
 
 <template>
-  <RouterView></RouterView>
+  <Layout>
+    <RouterView></RouterView>
+  </Layout>
   <Transition name="slide">
     <NoteEditor v-if="noteStore.isEditingNote" />
   </Transition>
@@ -27,5 +30,4 @@ const loadingStore = useLoadingStore()
 .slide-leave-to {
   @apply translate-y-full opacity-0;
 }
-
 </style>

@@ -21,18 +21,19 @@ const routes = [
     path: '/notes',
     name: 'Notes',
     component: Notes,
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: true, layout: 'default' }
   },
   {
     path: '/tasks',
     name: 'Tasks',
     component: Tasks,
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: true, layout: 'default' }
   },
   {
     path: '/auth',
     name: 'Auth',
-    component: Auth
+    component: Auth,
+    meta: { layout: 'auth' }
   }
 ]
 

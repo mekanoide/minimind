@@ -18,7 +18,7 @@ import Tab from '@/components/Tab.vue'
 </script>
 
 <template>
-  <footer class="fixed w-full bottom-0 grid place-content-center bg-black py-2 px-4">
+  <footer class="fixed w-full bottom-0 grid place-content-center bg-black px-4">
     <Tabs>
       <Tab to="/notes" icon="mdi:notebook-outline" :label="$t('notes')"></Tab>
       <Tab to="/tasks" icon="mdi:check-circle-outline" :label="$t('tasks')"></Tab>

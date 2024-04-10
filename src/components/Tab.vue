@@ -15,21 +15,29 @@ const emit = defineEmits<{
 
 <template>
   <RouterLink
-    class="relative grid gap-2 justify-items-center cursor-pointer items-center py-2 px-8 text-zinc-500 transition-all transition-300 rounded-full hover:bg-zinc-800 hover:text-zinc-200"
+    class="group transition-300 relative grid cursor-pointer items-center justify-items-center gap-2 rounded-full px-8 py-4 text-zinc-500 transition-all"
     :to="to"
   >
     <Icon :icon="icon" class="h-8 w-8" />
     <span class="text-sm">{{ label }}</span>
+    <div aria-hidden="true" class="mark"></div>
   </RouterLink>
 </template>
 
 <style scoped>
 a:is(.exact-active, :hover) {
-  @apply border-rose-500 text-white;
+  @apply text-white;
 }
 
-/* a:is(.exact-active)::before {
-  @apply block bg-rose-500 h-1 w-6 absolute top-0 content-[''] rounded-b-lg;
+.mark {
+  @apply absolute bottom-0 block h-1 w-0 rounded-t-lg bg-rose-500 content-[''] transition-all duration-300;
 }
- */
- </style>
+
+a:hover .mark {
+  @apply w-4;
+}
+
+a:is(.exact-active) .mark {
+  @apply w-12;
+}
+</style>
