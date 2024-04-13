@@ -28,7 +28,7 @@ async function onDeleteTask() {
     class="flex items-center gap-4 rounded-xl border-l-8 border-transparent bg-zinc-900 px-6 py-4 shadow-lg transition-all ease-in-out hover:bg-zinc-800"
     :data-state="data.finished ? 'finished' : 'unfinished'"
   >
-    <div class="relative">
+    <div class="relative flex items-center">
       <input
         :id="`task-${data.position}`"
         type="checkbox"

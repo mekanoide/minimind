@@ -4,7 +4,7 @@ export type Task = {
   content: string
   created_at?: string
   modified_at?: string
-  label?: string | null
+  label: number
   finished?: boolean
   position?: number
 }

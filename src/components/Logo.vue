@@ -63,7 +63,7 @@ const props = defineProps<{
 
 <style scoped>
 svg {
-  @apply h-6 w-auto fill-rose-500;
+  @apply h-6 w-auto fill-brand-500;
 }
 
 svg[data-size='large'] {

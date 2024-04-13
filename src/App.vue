@@ -18,7 +18,9 @@ const loadingStore = useLoadingStore()
   <Transition name="slide">
     <NoteEditor v-if="noteStore.isEditingNote" />
   </Transition>
-  <Dialog v-if="dialogStore.isShowingDialog" />
+  <Transition name="pop">
+    <Dialog v-if="dialogStore.isShowingDialog" />
+  </Transition>
 </template>
 
 <style scoped>
@@ -29,5 +31,14 @@ const loadingStore = useLoadingStore()
 .slide-enter-from,
 .slide-leave-to {
   @apply translate-y-full opacity-0;
+}
+
+.pop-enter-active,
+.pop-leave-active {
+  @apply transition-all duration-300;
+}
+.pop-enter-from,
+.pop-leave-to {
+  @apply translate-y-8 opacity-0;
 }
 </style>

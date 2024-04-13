@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    @apply min-h-svh font-mono text-zinc-200;
+    @apply min-h-svh font-inconsolata text-zinc-200;
   }
   main {
     @apply mx-auto w-full max-w-6xl py-4;
@@ -37,8 +37,7 @@
       [type='url'],
       [type='week'],
       [type='text']
-    ),
-  textarea {
+    ) {
     @apply w-full rounded-lg bg-zinc-800 p-4 text-white;
   }
   textarea {

@@ -4,6 +4,7 @@ import { useSupabaseClient } from '@/composables/useSupabaseClient'
 export const useUser = () => {
   const { supabase } = useSupabaseClient()
   const userId = ref(null)
+  const labels = ref([])
 
   const getSupabaseSession = async () => {
     const { data, error } = await supabase.auth.getSession()
@@ -11,11 +12,21 @@ export const useUser = () => {
     userId.value = data.session.user.id
   }
 
+  const getUserLabels = async () => {
+    const { data, error } = await supabase
+      .from('labels')
+      .select('*')
+      .eq('user_id', userId.value)
+    if (error) throw error
+    labels.value = data
+  }
+
   onMounted(async () => {
-    getSupabaseSession()
+    await getSupabaseSession()
+    await getUserLabels()
   })
 
-  return { userId }
+  return { userId, labels }
 }
 
 export default { useUser }

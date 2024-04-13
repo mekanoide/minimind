@@ -22,8 +22,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Subheader> </Subheader>
-  <Spinner v-if="pending" />
+  <div v-if="pending" class="grid place-content-center py-24">
+    <Spinner />
+  </div>
   <NoteList v-else-if="!pending && notes.length > 0">
     <NotePreview
       v-for="note in notes"
@@ -32,18 +33,18 @@ onMounted(async () => {
       @deleted="noteStore.fetchNotes()"
     />
   </NoteList>
-  <EmptyState v-else-if="!pending && noteStore.notes.length === 0"
-    >No notes yet</EmptyState
-  >
+  <EmptyState v-else-if="!pending && noteStore.notes.length === 0">{{
+    $t('empty-notes')
+  }}</EmptyState>
   <div
-    class="pointer-events-none fixed bottom-28 left-4 right-4 flex place-content-center"
+    class="pointer-events-none fixed bottom-24 left-4 right-4 flex place-content-center"
   >
     <Button
-      class="pointer-events-auto whitespace-nowrap shadow-xl shadow-zinc-950"
+      class="pointer-events-auto whitespace-nowrap shadow-xl"
       variant="primary"
       size="large"
       @click="noteStore.startEditingNewNote"
-      ><Icon icon="mdi:plus-circle-outline" class="h-8 w-8" /><span
+      ><Icon icon="mdi:plus-circle-outline" class="h-6 w-6" /><span
         class="hidden md:inline"
         >{{ $t('add-note') }}</span
       ></Button

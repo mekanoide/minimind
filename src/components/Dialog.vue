@@ -22,7 +22,7 @@ const { cancel, confirm } = dialog
 </script>
 
 <template>
-  <div class="fixed inset-0 grid place-content-center bg-zinc-950 bg-opacity-80 transition-all">
+  <div class="fixed inset-0 grid place-content-center bg-zinc-950 bg-opacity-80 transition-all p-4">
     <div class="rounded-lg bg-zinc-900 p-8 shadow-xl grid gap-8">
       <p>{{ message }}</p>
       <footer class="flex gap-2">

@@ -21,19 +21,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Subheader></Subheader>
-  <Sortable
-    class="m-4 grid grid-cols-1 items-stretch gap-4"
-    :list="taskStore.tasks"
-    item-key="position"
-    tag="ul"
-    @end="taskStore.updatePositions"
-  >
-    <template #item="{ element, index }">
-      <Task :key="element.id" :data="element" @deleted="taskStore.fetchTasks" />
-    </template>
-  </Sortable>
-  <!--   <section class="sticky top-0 m-4 bg-zinc-950" @click.prevent="">
+  <Subheader>
     <form class="flex gap-2" @submit="onFinishTaskCreation">
       <input
         type="text"
@@ -50,5 +38,16 @@ onMounted(async () => {
         <Icon icon="mdi:plus-circle-outline" width="24" />
       </button>
     </form>
-  </section> -->
+  </Subheader>
+  <Sortable
+    class="m-4 grid grid-cols-1 items-stretch gap-4"
+    :list="taskStore.tasks"
+    item-key="position"
+    tag="ul"
+    @end="taskStore.updatePositions"
+  >
+    <template #item="{ element, index }">
+      <Task :key="element.id" :data="element" @deleted="taskStore.fetchTasks" />
+    </template>
+  </Sortable>
 </template>

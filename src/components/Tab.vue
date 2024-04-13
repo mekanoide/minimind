@@ -18,7 +18,7 @@ const emit = defineEmits<{
     class="group transition-300 relative grid cursor-pointer items-center justify-items-center gap-2 rounded-full px-8 py-4 text-zinc-500 transition-all"
     :to="to"
   >
-    <Icon :icon="icon" class="h-8 w-8" />
+    <Icon :icon="icon" class="h-6 w-6" />
     <span class="text-sm">{{ label }}</span>
     <div aria-hidden="true" class="mark"></div>
   </RouterLink>
@@ -30,7 +30,7 @@ a:is(.exact-active, :hover) {
 }
 
 .mark {
-  @apply absolute bottom-0 block h-1 w-0 rounded-t-lg bg-rose-500 content-[''] transition-all duration-300;
+  @apply absolute bottom-0 block h-1 w-0 rounded-t-lg bg-brand-500 content-[''] transition-all duration-300;
 }
 
 a:hover .mark {
@@ -38,6 +38,6 @@ a:hover .mark {
 }
 
 a:is(.exact-active) .mark {
-  @apply w-12;
+  @apply w-full;
 }
 </style>

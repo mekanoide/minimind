@@ -7,7 +7,7 @@ import Button from '@/components/Button.vue'
 const loading = ref<boolean>(false)
 const email = ref<string>('')
 const sent = ref<boolean>(false)
-const redirectUrl = ref<string>('')
+const redirectUrl = ref<string | null>(null)
 
 const { login } = useAuth()
 
@@ -24,9 +24,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="grid h-svh place-content-center p-8">
+  <div class="grid gap-8 py-16 px-8">
+    <Logo size="large" />
     <section class="m-auto grid max-w-lg gap-8" v-if="!sent">
-      <Logo size="large" />
       <p>{{ $t('auth-description') }}</p>
       <form class="grid gap-8" @submit.prevent="handleLogin">
         <input

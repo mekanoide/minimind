@@ -2,35 +2,21 @@
 import { ref, watch, onMounted, Transition, computed } from 'vue'
 import { useNoteStore } from '@/stores/useNoteStore'
 import Button from '@/components/Button.vue'
-import { Icon } from '@iconify/vue'
+import LabelSelector from '@/components/LabelSelector.vue'
 import { Note } from '@/types/Note'
-import { useMarkdown } from '@/composables/useMarkdown'
+import { useLabelColors } from '@/composables/useLabelColors'
 
 const noteStore = useNoteStore()
-
+const colors = useLabelColors(noteStore.currentNote.label)
 const editor = ref<HTMLElement | null>(null)
-const content = ref<String>(localStorage.getItem('backupContent') || '')
-const noteId = ref<String | null>(null)
-const showingLabels = ref<Boolean>(false)
+const content = ref<string>('')
+const noteId = ref<string | null>(null)
+const showingLabels = ref<boolean>(false)
 
-const formattedContent = computed(() => {
-  /*   const strng = content.value.toString()
-  const { html, markdown } = useMarkdown(strng) */
-  return content.value
-})
 
-const labels = [
-  { id: '01', name: 'Personal' },
-  { id: '02', name: 'Work' },
-  { id: '03', name: 'School' },
-  { id: '04', name: 'Home' },
-  { id: '05', name: 'Home' },
-  { id: '06', name: 'Home' }
-]
-
-const onUpdateContent = (event: Event) => {
-  const target = event?.target as HTMLElement
-  noteStore.updateNoteContent(target.textContent || '')
+function onUpdateContent(e: Event) {
+  content.value = (e.currentTarget as HTMLInputElement).value
+  noteStore.updateNoteContent(content.value)
 }
 
 const onToggleLabels = () => {
@@ -52,15 +38,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="fixed inset-0 w-full bg-zinc-900 p-4">
-    <div class="mx-auto grid w-full h-full max-w-5xl grid-rows-[1fr_auto]">
-      <pre
-        class="overflow-auto w-full"
+  <section class="fixed inset-0 z-10 w-full bg-gradient-to-b from-zinc-900 to-black p-4">
+    <div class="mx-auto grid h-full w-full max-w-5xl grid-rows-[1fr_auto]">
+      <textarea
+        class="w-full overflow-y-auto bg-transparent text-white"
         ref="editor"
-        contenteditable="true"
-        @input.prevent="onUpdateContent"
-        >{{ content }}</pre
-      >
+        :placeholder="$t('placeholders.editor')"
+        :value="content"
+        @update="onUpdateContent"
+      ></textarea>
       <footer class="flex gap-2">
         <Button
           variant="primary"
@@ -69,49 +55,8 @@ onMounted(() => {
         >
           {{ $t('finish') }}
         </Button>
-        <div class="relative">
-          <Button
-            type="button"
-            @click="onToggleLabels"
-            :label="$t('show-labels')"
-          >
-            <Icon icon="mdi:label-outline" width="24" />
-          </Button>
-          <menu
-            v-if="showingLabels"
-            class="absolute bottom-full grid w-max grid-cols-3 gap-2"
-          >
-            <li v-for="(label, index) in labels" :key="index">
-              <button
-                :data-label="label.id"
-                type="button"
-                class="block aspect-square w-16 rounded-md"
-              ></button>
-            </li>
-          </menu>
-        </div>
+        <LabelSelector :label="noteStore.currentNote.label" />
       </footer>
     </div>
   </section>
 </template>
-
-<style scoped>
-[data-label='01'] {
-  @apply bg-rose-500;
-}
-[data-label='02'] {
-  @apply bg-amber-500;
-}
-[data-label='03'] {
-  @apply bg-green-500;
-}
-[data-label='04'] {
-  @apply bg-teal-500;
-}
-[data-label='05'] {
-  @apply bg-sky-500;
-}
-[data-label='06'] {
-  @apply bg-violet-500;
-}
-</style>
