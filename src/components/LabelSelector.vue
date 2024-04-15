@@ -36,10 +36,9 @@ function onToggleLabels() {
 
 <template>
   <div class="relative">
-    <Button type="button" @click="onToggleLabels" :label="$t('show-labels')">
-      <span :class="[colors.card]"></span>
-      epa
-    </Button>
+    <button class="w-24 h-12 rounded-full" :class="[colors.card]" type="button" @click="onToggleLabels" :label="$t('show-labels')">
+      <span ></span>
+    </button>
     <menu
       v-if="showingLabels"
       class="absolute bottom-full z-50 grid w-max grid-cols-3 gap-2 rounded-lg bg-zinc-900 p-4 shadow-lg"

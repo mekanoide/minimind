@@ -5,6 +5,7 @@ export function useAuth(): {
   login: (email: string) => Promise<any>
   logout: () => Promise<void>
   getUser: () => Promise<any>
+  verifyOtp: (email: string, token: string) => Promise<any>
 } {
   const { supabase } = useSupabaseClient()
 
@@ -13,13 +14,30 @@ export function useAuth(): {
       const { data, error } = await supabase.auth.signInWithOtp({
         email: email,
         options: {
-          emailRedirectTo: import.meta.env.REDIRECT_URL ?? redirectUrl ?? 'http://localhost:3002'
+          emailRedirectTo:
+            import.meta.env.REDIRECT_URL ??
+            redirectUrl ??
+            'http://localhost:3002'
         }
       })
       if (error) throw error
       return data
     } catch (error) {
       console.error('Error updating notes:', error)
+    }
+  }
+
+  async function verifyOtp(email: string, token: string) {
+    try {
+      const { data, error } = await supabase.auth.verifyOtp({
+        email: email,
+        token: token,
+        type: 'email'
+      })
+      if (error) throw error
+      return data
+    } catch (error) {
+      console.error('Error fetching notes:', error)
     }
   }
 
@@ -40,6 +58,7 @@ export function useAuth(): {
 
   return {
     login,
+    verifyOtp,
     logout,
     getUser
   }
