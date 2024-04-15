@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useAuth } from '@/composables/useAuth'
+import { useRouter } from 'vue-router'
 import Logo from '@/components/Logo.vue'
 import Button from '@/components/Button.vue'
 
@@ -11,6 +12,7 @@ const sent = ref<boolean>(false)
 const redirectUrl = ref<string | null>(null)
 
 const { login, verifyOtp } = useAuth()
+const router = useRouter()
 
 async function onLogin() {
   loading.value = true
@@ -22,6 +24,8 @@ async function onLogin() {
 async function onOtpVerification() {
   loading.value = true
   await verifyOtp(email.value, code.value)
+  loading.value = false
+  router.push('/')
 }
 
 
@@ -49,14 +53,14 @@ onMounted(() => {
         </Button>
       </form>
     </section>
-    <section class="m-auto max-w-lg" v-else>
+    <section class="m-auto max-w-lg grid gap-8" v-else>
       <p>
         {{ $t('otp-sent') }}
       </p>
       <form class="grid gap-8" @submit.prevent="onOtpVerification">
-        <input type="text" :placeholder="$t('otp')" v-model="code" required />
+        <input type="text" :placeholder="$t('placeholders.otp')" v-model="code" required />
         <Button type="submit" variant="primary" size="large" :pending="loading">
-          {{ $t('login') }}
+          {{ $t('sign-in') }}
         </Button>
       </form>
     </section>

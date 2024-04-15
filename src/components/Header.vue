@@ -1,16 +1,13 @@
-<script setup>
+<script setup lang="ts">
 import Logo from '@/components/Logo.vue'
 import { Icon } from '@iconify/vue'
 import { useAuth } from '@/composables/useAuth'
 import { useMainStore } from '@/stores/useMainStore'
-import { storeToRefs } from 'pinia'
 
-const { logout } = useAuth()
-const store = useMainStore()
-const { isShowingMenu } = storeToRefs(store)
+const mainStore = useMainStore()
 
 const onOpenMenu = () => {
-  store.isShowingMenu = true
+  mainStore.toggleMenu()
 }
 </script>
 

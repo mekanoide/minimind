@@ -6,7 +6,7 @@
   "close": "Cerrar",
   "cancel": "Cancelar",
   "confirm": "Confirmar",
-  "auth-description": "Inicia sesión con tu dirección de correo electrónico. Te enviaremos un enlace mágico para iniciar sesión.",
+  "auth-description": "Inicia sesión con tu dirección de correo electrónico. Te enviaremos un código de un solo uso para iniciar sesión.",
   "your-email": "Tu correo electrónico",
   "magic-link-sent": "Hemos enviado un enlace mágico a tu correo electrónico. Haz clic en el enlace para iniciar sesión. Puedes cerrar esta pestaña.",
   "add-note": "Añadir nota",
@@ -17,11 +17,13 @@
   "show-labels": "Mostrar etiquetas",
   "sign-in": "Iniciar sesión",
   "sign-out": "Cerrar sesión",
-  "send-magic-link": "Enviar enlace mágico",
+  "send-otp-code": "Enviar código OTP",
+  "otp-sent": "Hemos enviado un código OTP a tu correo electrónico. Introdúcelo a continuación para registrarte o iniciar sesión.",
   "empty-notes": "No hay notas",
   "empty-tasks": "No hay tareas",
   "placeholders": {
     "email": "Tu correo electrónico",
-    "editor": "Escribe aquí..."
+    "editor": "Escribe aquí...",
+    "otp": "Código OTP"
   }
 }

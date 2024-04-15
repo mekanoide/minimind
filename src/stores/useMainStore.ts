@@ -4,6 +4,10 @@ import { defineStore } from 'pinia'
 export const useMainStore = defineStore('main', () => {
   const isShowingMenu = ref<Boolean>(false)
 
+  function toggleMenu() {
+    isShowingMenu.value = !isShowingMenu.value
+  }
+
   function hideMenu() {
     isShowingMenu.value = false
   }
@@ -14,6 +18,7 @@ export const useMainStore = defineStore('main', () => {
 
   return {
     isShowingMenu,
+    toggleMenu,
     hideMenu,
     showMenu
   }

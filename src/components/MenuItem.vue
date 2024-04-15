@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 // Imports
 
 // Props
@@ -18,7 +18,7 @@
 
 <template>
   <li>
-    <button><slot></slot></button>
+    <button type="button"><slot></slot></button>
   </li>
 </template>
 

@@ -4,17 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 3002",
+    "dev": "vite --port 3002 --host",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.40.0",
-    "@vueup/vue-quill": "^1.2.0",
     "@vueuse/core": "^10.9.0",
     "markdown-it-highlightjs": "^4.0.1",
     "pinia": "^2.1.7",
-    "quilljs-markdown": "^1.2.0",
     "sortablejs": "^1.15.2",
     "sortablejs-vue3": "^1.2.11",
     "uuid": "^9.0.1",
