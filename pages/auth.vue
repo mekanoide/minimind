@@ -1,4 +1,7 @@
 <script setup lang="ts">
+definePageMeta({
+  layout: 'clear'
+})
 import { useAuth } from '@/composables/useAuth'
 
 const loading = ref<boolean>(false)
