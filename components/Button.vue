@@ -8,7 +8,7 @@ const props = defineProps<{
 
 <template>
   <button
-    class="grid h-12 justify-center items-center rounded-full px-8"
+    class="grid h-12 justify-center items-center rounded-2xl px-8"
     :data-variant="variant"
     :data-size="size"
     :data-pending="pending"
@@ -22,7 +22,7 @@ const props = defineProps<{
 
 <style scoped>
 button:not([data-variant]) {
-  @apply bg-zinc-800 text-zinc-400;
+  @apply bg-zinc-800 text-zinc-200;
 }
 
 button[data-variant='primary'] {
@@ -34,7 +34,7 @@ button[data-variant='primary']:hover {
 }
 
 button[data-size='large'] {
-  @apply h-16 px-12 text-lg;
+  @apply h-16 px-8 text-lg;
 }
 
 button[data-pending=true] {

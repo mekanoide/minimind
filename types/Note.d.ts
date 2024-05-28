@@ -1,7 +1,8 @@
 export interface Note {
   id: string
   content: string
-  created_at: Date
+  created_at?: Date
   modified_at?: Date | null
-  label: number
+  label?: number
+  synced: boolean
 }

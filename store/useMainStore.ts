@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 
 export const useMainStore = defineStore('main', () => {
   const isShowingMenu = ref<Boolean>(false)
+  const isOfflineMode = ref<Boolean>(false)
 
   function toggleMenu() {
     isShowingMenu.value = !isShowingMenu.value
@@ -16,10 +17,17 @@ export const useMainStore = defineStore('main', () => {
     isShowingMenu.value = true
   }
 
+  function setOfflineMode() {
+    console.log('Setting offline mode')
+    isOfflineMode.value = true
+  }
+
   return {
     isShowingMenu,
+    isOfflineMode,
     toggleMenu,
     hideMenu,
-    showMenu
+    showMenu,
+    setOfflineMode
   }
 })

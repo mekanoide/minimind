@@ -1,35 +1,30 @@
-import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { useDebounce } from '@/composables/useDebounce.ts'
-import { Note } from '@/types/Note.ts'
+import { useDebounce } from '@/composables/useDebounce'
+import type { Note } from '@/types/Note'
 import { v4 as uuidv4 } from 'uuid'
-import { useUser } from '@/composables/useUser.ts'
 
 export const useNoteStore = defineStore('note', () => {
   const { debounce } = useDebounce()
   const supabase = useSupabaseClient()
-  const { userId } = useUser()
+  const user = useSupabaseUser()
   const notes = ref<Note[]>([])
   const isEditingNote = ref<Boolean>(false)
 
-  const currentNote = ref<Note>({
-    id: null,
-    content: '',
-    label: 0
-  })
+  const currentNote = ref<Note | null>(null)
 
   const resetNote = () => {
-    currentNote.value = {
-      id: null,
-      content: '',
-      label: 0
-    }
+    currentNote.value = null
   }
 
   const startEditingNewNote = () => {
     resetNote()
     isEditingNote.value = true
-    currentNote.value.id = uuidv4()
+    currentNote.value = {
+      id: uuidv4(),
+      content: '',
+      label: 0,
+      synced: false
+    }
   }
 
   const startEditingExistingNote = (note: Note) => {

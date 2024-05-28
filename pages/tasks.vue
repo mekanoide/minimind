@@ -1,4 +1,7 @@
 <script setup lang="ts">
+definePageMeta({
+  middleware: ['auth']
+})
 import { Sortable } from 'sortablejs-vue3'
 import { useTaskStore } from '~/store/useTaskStore'
 
@@ -19,24 +22,28 @@ onMounted(async () => {
 
 <template>
   <Subheader>
-    <form class="flex gap-2" @submit="onFinishTaskCreation">
+    <form
+      class="flex gap-2"
+      @submit="onFinishTaskCreation">
       <input
         type="text"
         v-model="taskStore"
         placeholder="Create new task..."
-        @keyup.enter="onFinishTaskCreation"
-      />
+        @keyup.enter="onFinishTaskCreation" />
       <button
         type="submit"
         @click="onFinishTaskCreation"
         :disabled="!content || content.length === 0"
-        title="Create new task"
-      >
-        <Icon name="mdi:plus-circle-outline" size="24" />
+        title="Create new task">
+        <Icon
+          name="mdi:plus-circle-outline"
+          size="24" />
       </button>
     </form>
   </Subheader>
-  <div v-if="pending" class="grid place-content-center py-24">
+  <div
+    v-if="pending"
+    class="grid place-content-center py-24">
     <Spinner />
   </div>
   <Sortable
@@ -45,10 +52,12 @@ onMounted(async () => {
     :list="tasks"
     item-key="position"
     tag="ul"
-    @end="taskStore.updatePositions"
-  >
+    @end="taskStore.updatePositions">
     <template #item="{ element, index }">
-      <Task :key="element.id" :data="element" @deleted="taskStore.fetchTasks" />
+      <Task
+        :key="element.id"
+        :data="element"
+        @deleted="taskStore.fetchTasks" />
     </template>
   </Sortable>
 </template>

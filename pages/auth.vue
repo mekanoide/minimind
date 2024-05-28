@@ -3,15 +3,15 @@ definePageMeta({
   layout: 'clear'
 })
 import { useAuth } from '@/composables/useAuth'
+import { useMainStore } from '@/store/useMainStore'
 
+const mainStore = useMainStore()
 const loading = ref<boolean>(false)
 const email = ref<string>('')
 const code = ref<string>('')
 const sent = ref<boolean>(false)
-const redirectUrl = ref<string | null>(null)
 
 const { login, verifyOtp } = useAuth()
-const router = useRouter()
 
 async function onLogin() {
   loading.value = true
@@ -24,20 +24,21 @@ async function onOtpVerification() {
   loading.value = true
   await verifyOtp(email.value, code.value)
   loading.value = false
-  router.push('/notes')
+  await navigateTo('/')
 }
 
-onMounted(() => {
-  redirectUrl.value = `${window.location.protocol}//${window.location.host}`
-  console.log(redirectUrl.value)
-})
+async function onStartOffline() {
+  mainStore.setOfflineMode()
+  await navigateTo('/')
+}
 </script>
 
 <template>
-  <div class="grid gap-8 px-8 py-16">
+  <div
+    class="grid items-start gap-8 px-8 py-16 grid-rows-[auto_1fr_auto] h-dvh">
     <Logo size="large" />
     <section
-      class="m-auto grid max-w-md w-full gap-8"
+      class="mx-auto grid max-w-md w-full gap-8"
       v-if="!sent">
       <p>{{ $t('auth-description') }}</p>
       <form
@@ -51,14 +52,13 @@ onMounted(() => {
         <Button
           type="submit"
           variant="primary"
-          size="large"
           :pending="loading">
           {{ $t('send-otp-code') }}
         </Button>
       </form>
     </section>
     <section
-      class="m-auto max-w-md w-full grid gap-8"
+      class="mx-auto max-w-md w-full grid gap-8"
       v-else>
       <p>
         {{ $t('otp-sent') }}
@@ -74,11 +74,17 @@ onMounted(() => {
         <Button
           type="submit"
           variant="primary"
-          size="large"
           :pending="loading">
           {{ $t('sign-in') }}
         </Button>
       </form>
     </section>
+    <footer class="mx-auto max-w-md grid">
+      <Button
+        type="button"
+        @click.prevent="onStartOffline">
+        {{ $t('use-offline') }}
+      </Button>
+    </footer>
   </div>
 </template>

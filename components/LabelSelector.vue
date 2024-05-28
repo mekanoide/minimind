@@ -16,14 +16,18 @@ const emit = defineEmits<{
 // Properties
 const colors = useLabelColors(props.label)
 
-
 const showingLabels = ref<boolean>(false)
 
-const labels = [1, 2, 3, 4, 5, 6]
+const labels = ['default', 'recommendation', 'idea', 4, 5, 6]
 
 // Computed properties
 
 // Methods
+
+function onSelect(label: number) {
+  emit('update', label)
+  showingLabels.value = false
+}
 
 function onToggleLabels() {
   showingLabels.value = !showingLabels.value
@@ -36,20 +40,26 @@ function onToggleLabels() {
 
 <template>
   <div class="relative">
-    <button class="w-24 h-12 rounded-full" :class="[colors.card]" type="button" @click="onToggleLabels" :label="$t('show-labels')">
-      <span ></span>
+    <button
+      class="w-24 h-12 rounded-2xl grid place-content-center"
+      :class="[colors.card]"
+      type="button"
+      @click="onToggleLabels"
+      :label="$t('show-labels')">
+      <span>{{ label }}</span>
     </button>
     <menu
       v-if="showingLabels"
-      class="absolute bottom-full z-50 grid w-max grid-cols-3 gap-2 rounded-lg bg-zinc-900 p-4 shadow-lg"
-    >
-      <li v-for="item in labels">
+      class="absolute bottom-full mb-2 z-50 grid w-max gap-2 rounded-2xl bg-zinc-900 p-4 shadow-lg">
+      <li v-for="(item, index) in labels">
         <button
           :data-label="item"
           type="button"
-          class="block aspect-square w-16 rounded-md"
-          @click="emit('update', item)"
-        ></button>
+          class="w-full text-left block p-4 rounded-2xl"
+          :class="useLabelColors(index).card"
+          @click="onSelect(index)">
+          {{ item }}
+        </button>
       </li>
     </menu>
   </div>

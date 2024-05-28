@@ -28,7 +28,7 @@
 
 <style scoped>
 .particle {
-  @apply h-4 w-1 rounded-full bg-current;
+  @apply h-4 w-1 rounded-xl bg-current;
   animation: bounce 1200ms infinite ease;
 }
 

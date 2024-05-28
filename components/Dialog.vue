@@ -38,7 +38,7 @@ onkeydown = (event) => {
   <div
     class="fixed inset-0 grid place-content-center bg-zinc-950 bg-opacity-80 p-4 transition-all"
   >
-    <div ref="modal" class="grid gap-8 rounded-lg bg-zinc-900 p-8 shadow-xl">
+    <div ref="modal" class="grid gap-8 rounded-2xl bg-zinc-900 p-8 shadow-xl">
       <p>{{ dialogStore.message }}</p>
       <footer class="flex gap-2">
         <Button type="button" @click="dialogStore.cancel">{{

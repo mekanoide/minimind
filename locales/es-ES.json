@@ -21,6 +21,8 @@
   "otp-sent": "Hemos enviado un código OTP a tu correo electrónico. Introdúcelo a continuación para registrarte o iniciar sesión.",
   "empty-notes": "No hay notas",
   "empty-tasks": "No hay tareas",
+  "offline": "Modo sin conexión",
+  "use-offline": "Usar sin conexión",
   "placeholders": {
     "email": "Tu correo electrónico",
     "editor": "Escribe aquí...",

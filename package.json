@@ -4,28 +4,28 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --port 3003 --host",
+    "dev": "nuxt dev --port 3002 --host",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
+    "@vite-pwa/nuxt": "^0.7.0",
     "@vueuse/core": "^10.9.0",
-    "dexie": "^4.0.4",
+    "idb": "^8.0.0",
     "nuxt": "^3.11.2",
     "sortablejs": "^1.15.2",
     "sortablejs-vue3": "^1.2.11",
     "uuid": "^9.0.1",
-    "vue": "^3.4.22",
-    "vue-router": "^4.3.0"
+    "vue": "^3.4.27",
+    "vue-router": "^4.3.2"
   },
   "devDependencies": {
-    "@nuxtjs/i18n": "^8.3.0",
-    "@nuxtjs/supabase": "^1.2.0",
-    "@types/markdown-it": "^14.0.1",
+    "@nuxtjs/i18n": "^8.3.1",
+    "@nuxtjs/supabase": "^1.2.2",
+    "@types/markdown-it": "^14.1.1",
     "@types/uuid": "^9.0.8",
-    "@vite-pwa/nuxt": "^0.6.0",
     "autoprefixer": "^10.4.19",
     "markdown-it": "^14.1.0",
     "nuxt-icon": "^0.6.10",

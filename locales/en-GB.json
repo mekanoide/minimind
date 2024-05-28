@@ -21,6 +21,8 @@
   "otp-sent": "We've sent a one time code to your email. Enter the code to sign up or sign in.",
   "empty-notes": "No notes yet",
   "empty-tasks": "No tasks yet",
+  "offline": "Offline mode",
+  "use-offline": "Use offline",
   "placeholders": {
     "email": "Your email",
     "editor": "Write something...",

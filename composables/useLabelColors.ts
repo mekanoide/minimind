@@ -3,37 +3,44 @@ export function useLabelColors(id: number) {
   switch (id) {
     case 1:
       return {
-        card: 'bg-label01-900 hover:bg-label01-800',
-        meta: 'text-label01-400'
+        card: 'bg-rose-500 hover:bg-rose-400 text-black',
+        editor: 'bg-rose-500 text-black',
+        meta: 'text-rose-900'
       }
     case 2:
       return {
-        card: 'bg-label02-900 hover:bg-label02-800',
-        meta: 'text-label02-400'
+        card: 'bg-amber-500 hover:bg-amber-400 text-black',
+        editor: 'bg-amber-500 text-black',
+        meta: 'text-amber-900'
       }
     case 3:
       return {
-        card: 'bg-label03-900 hover:bg-label03-800',
-        meta: 'text-label03-400'
+        card: 'bg-lime-500 hover:bg-lime-400 text-black',
+        editor: 'bg-lime-500 text-black',
+        meta: 'text-lime-900'
       }
     case 4:
       return {
-        card: 'bg-label04-900 hover:bg-label04-800',
-        meta: 'text-label04-400'
+        card: 'bg-emerald-500 hover:bg-emerald-400 text-black',
+        editor: 'bg-emerald-500 text-black',
+        meta: 'text-emerald-900'
       }
     case 5:
       return {
-        card: 'bg-label05-900 hover:bg-label05-800',
-        meta: 'text-label05-400'
+        card: 'bg-sky-500 hover:bg-sky-400 text-black',
+        editor: 'bg-sky-500 text-black',
+        meta: 'text-sky-900'
       }
     case 6:
       return {
-        card: 'bg-label06-900 hover:bg-label06-800',
-        meta: 'text-label06-400'
+        card: 'bg-violet-500 hover:bg-violet-400 text-black',
+        editor: 'bg-violet-500 text-black',
+        meta: 'text-violet-900'
       }
     default:
       return {
         card: 'bg-zinc-900 hover:bg-zinc-800',
+        editor: 'bg-zinc-900 text-white',
         meta: 'text-zinc-400'
       }
   }

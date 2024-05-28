@@ -12,16 +12,57 @@ export default defineNuxtConfig({
         { property: 'og:site_name', content: 'minimind' },
         { property: 'og:title', content: 'minimind' },
         { property: 'og:type', content: 'website' },
-        { property: 'og:locale', content: 'es_ES' },
+        { property: 'og:locale', content: 'en_EN' },
         { property: 'og:image', content: '/og.png' },
         { property: 'og:description', content: '' }
       ],
       link: [{ rel: 'icon', type: 'image/svg', href: '/favicon.svg' }]
     }
   },
-  css: ['~/styles/index.css'],
-  devtools: { enabled: true },
-  modules: ['@nuxtjs/supabase', '@pinia/nuxt', 'nuxt-icon', '@nuxtjs/i18n'],
+  css: ['@/styles/index.css'],
+  devtools: { enabled: false },
+  modules: [
+    '@nuxtjs/supabase',
+    '@pinia/nuxt',
+    'nuxt-icon',
+    '@nuxtjs/i18n',
+    '@vite-pwa/nuxt'
+  ],
+  pwa: {
+    registerType: 'autoUpdate',
+    manifest: {
+      name: 'Minimind',
+      short_name: 'Minimind',
+      description: 'hey',
+      theme_color: '#000000',
+      background_color: '#000000',
+      lang: 'en',
+      display: 'standalone',
+      icons: [
+        {
+          src: '/icon-512x512.png',
+          sizes: '512x512',
+          type: 'image/png'
+        },
+        {
+          src: '/icon-192x192.png',
+          sizes: '192x192',
+          type: 'image/png'
+        }
+      ]
+    },
+    workbox: {
+      globPatterns: ['**/*.{js,mjs,css,html,ico,png,json,svg}'],
+      runtimeCaching: [
+        // Cache assets
+        {
+          urlPattern: '/',
+          handler: 'CacheFirst'
+        }
+      ],
+      cleanupOutdatedCaches: true
+    }
+  },
   postcss: {
     plugins: {
       tailwindcss: {},

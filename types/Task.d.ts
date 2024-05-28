@@ -6,4 +6,5 @@ export interface Task {
   priority?: number
   finished?: boolean
   position?: number
+  synced: boolean
 }

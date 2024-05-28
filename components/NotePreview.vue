@@ -75,7 +75,7 @@ const resizeCard = () => {
 <template>
   <li
     ref="card"
-    class="group grid cursor-pointer content-between gap-2 rounded-lg p-4 shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl"
+    class="group grid cursor-pointer content-between gap-2 rounded-xl p-4 shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl"
     :class="[colors.card]"
     :style="`grid-row-end: span ${Math.ceil(getContentHeight() / 100)}`"
     role="button"
